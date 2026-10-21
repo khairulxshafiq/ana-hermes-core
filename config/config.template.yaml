@@ -1,0 +1,88 @@
+model:
+  aliases:
+    coding:
+      provider: custom:google-paid
+      model: gemini-3.8-flash
+    reason:
+      provider: custom:google-paid
+      model: gemini-3.8-flash
+    easy:
+      provider: custom:google-paid
+      model: gemini-3.8-flash
+    bulk:
+      provider: custom:google-paid
+      model: gemini-3.8-flash
+    copywrite:
+      provider: custom:google-paid
+      model: gemini-3.8-flash
+    writer:
+      provider: custom:google-paid
+      model: gemini-3.8-flash
+    vision:
+      provider: custom:google-paid
+      model: gemini-3.8-flash
+  default: gemini-3.8-flash
+  provider: custom:google-paid
+  base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+
+fallback_providers:
+  - provider: openrouter
+    model: google/gemini-2.0-flash-exp:free
+  - provider: openrouter
+    model: deepseek/deepseek-chat
+  - provider: openrouter
+    model: meta-llama/llama-3.3-70b-instruct:free
+
+database:
+  journal_mode: wal
+
+runtime:
+  nofile_soft_limit: 4096
+
+agent:
+  max_turns: 30
+  reasoning_effort: medium
+  verbose: false
+
+terminal:
+  backend: local
+  cwd: .
+  timeout: 180
+
+web:
+  backend: ddgs
+  use_gateway: false
+
+compression:
+  enabled: true
+  threshold: 0.6
+  target_ratio: 0.2
+  protect_last_n: 4
+  min_tail_user_messages: 1
+
+platforms:
+  telegram:
+    enabled: true
+    home_channel:
+      platform: telegram
+      chat_id: "${TELEGRAM_HOME_CHAT_ID}"
+      name: Owner
+      user_id: "${TELEGRAM_HOME_USER_ID}"
+
+providers:
+  google-paid: &id_google_paid
+    name: google-paid
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    key_env: GEMINI_API_KEY_PAID
+    api_mode: chat_completions
+    model: gemini-3.8-flash
+    models:
+      - gemini-3.8-flash
+      - gemini-3-flash-preview
+      - gemini-2.5-flash-lite
+
+custom_providers:
+  - *id_google_paid
+
+gateway:
+  multiplex_profiles: true

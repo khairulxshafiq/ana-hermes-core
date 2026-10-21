@@ -1,0 +1,23 @@
+[Unit]
+Description=ANA Hermes Agent Gateway - Messaging Platform Integration
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/hermes gateway run
+WorkingDirectory=%h/.hermes
+EnvironmentFile=%h/.hermes/.env
+Environment="HERMES_HOME=%h/.hermes"
+Environment="HERMES_SUPERVISED_CHILD=1"
+Restart=always
+RestartSec=5
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,168 @@
+meta:
+  generated: '2026-09-22'
+  total_skills: 105
+  enforced: false
+  source: Phase D3 audit
+  enforcement_note: No native per-platform skill scoping exists in Hermes Agent config;
+    physical archiving out of ~/.hermes/skills/ is the only lever to shrink the per-turn
+    skills index.
+workers:
+  aura-core:
+    topic: General
+    alias: easy
+    skills:
+    - agent-identity-rebrand
+    - aura-token-optimization
+    - autonomous-ai-agents/aura-customizations
+    - autonomous-ai-agents/hermes-agent
+    - autonomous-ai-agents/hermes-self-evolution
+    - autonomous-ai-agents/model-routing
+    - productivity/document-to-action-items
+    - productivity/glance-ios-widgets
+    - productivity/personal-brand
+  aura-task:
+    topic: Task
+    alias: easy
+    skills:
+    - productivity/airtable
+    - productivity/docx
+    - productivity/google-tasks-api
+    - productivity/google-workspace
+    - productivity/nano-pdf
+    - productivity/ocr-and-documents
+    - productivity/pdf
+    - productivity/powerpoint
+    - productivity/screenshot-ocr-fallback
+    - productivity/solopreneur-finance
+    - productivity/xlsx
+    - saas-tool-evaluation
+    - software-development/plan
+  aura-fetch:
+    topic: Fetch
+    alias: bulk
+    skills:
+    - productivity/sakluma-content
+    - productivity/sakluma-publish
+    - research/blogwatcher
+    - research/competitor-news-monitor
+    - research/internet-reach
+    - research/sakluma-news
+    - s1
+    - social-media/xurl
+  aura-writer:
+    topic: Blog
+    alias: writer
+    skills:
+    - creative/humanizer
+    - creative/scribd-guide-funnel
+    - creative/viral-kisah-sejarah
+    - productivity/blogger-publishing
+  aura-social:
+    topic: FB
+    alias: copywrite
+    skills:
+    - creative/hermes-prompt-coach
+    - social-media/liya-commerce
+    - social-media/sakluma-fb-format
+    - social-media/social-media-publish-pipeline
+  aura-trade:
+    topic: Trade
+    alias: easy
+    escalate: copywrite
+    skills:
+    - finance/akira-finance
+    - finance/aura-trading
+  aura-image:
+    topic: IMG
+    alias: vision
+    skills:
+    - creative/aura-vision-pipeline
+    - creative/aura-visual-generation
+    - creative/comfyui
+    - creative/image-prompt-enhancer
+    - image-provider-ladder
+  aura-video:
+    topic: VD
+    alias: null
+    skills:
+    - creative/motion-animate
+    - creative/motion-assets
+    - creative/motion-design
+    - creative/motion-pipeline
+    - creative/motion-plan
+    - creative/piko-bojo-pipeline
+    - creative/songwriting-and-ai-music
+    - media/gif-search
+    - media/youtube-content
+  coder:
+    profile: coder
+    alias: coding
+    skills:
+    - creative/claude-design
+    - creative/popular-web-designs
+    - creative/premium-landing-pipeline
+    - creative/sketch
+    - devops/git-repo-repair
+    - devops/repo-audit-hygiene
+    - devops/sdlc-review
+    - github/codebase-inspection
+    - github/github-auth
+    - github/github-code-review
+    - github/github-issue-to-pr
+    - github/github-issues
+    - github/github-pages-publish
+    - github/github-pr-workflow
+    - github/github-repo-cleanup
+    - github/github-repo-management
+    - mlops/huggingface-hub
+    - mlops/kaggle-cli
+    - product/aura-saas-blueprint
+    - product/saas-launch-playbook
+    - productivity/sakluma-website
+    - research/repo-adoption
+    - software-development/agent-project-governance
+    - software-development/agent-stack-tier
+  ops:
+    topic: null
+    alias: easy
+    skills:
+    - agy-delegate
+    - antigravity-delegate-verify
+    - antigravity-workflow
+    - autonomous-ai-agents/hermes-gateway-troubleshooting
+    - cloud/google-cloud
+    - cloud/tencent-cloud-api
+    - cloud/vps-provider-research
+    - delegate-verify-loop
+    - devops/maya-ops-sentinel
+    - devops/telegram-bot-troubleshooting
+    - devops/tg-topic-workflow
+    - devops/vps-service-deployment
+    - finance/llm-provider-cost-audit
+    - llm-gateway-ops
+    - luma-check-and-balance
+    - product/aurawatch-cctv
+    - productivity/aura-dashboard-audit
+    - productivity/by-naykey-ops
+    - productivity/coder-research-delegation
+    - release-knowledge-reconciliation
+    - runpod-watchdog
+    - social-media/hermes-telegram-callbacks
+    - social-media/telegram-channel-ops
+    - social-media/telegram-group-hosting
+    - social-media/telegram-native-ui
+unassigned:
+  skills: []
+archived:
+  total: 10
+  skills:
+    s2: ~/AnaFile/_archive-skills-20260922/s2
+    s3: ~/AnaFile/_archive-skills-20260922/s3
+    s4: ~/AnaFile/_archive-skills-20260922/s4
+    s5: ~/AnaFile/_archive-skills-20260922/s5
+    cloud/llm-gateway-proxy: ~/AnaFile/_archive-skills-20260922/llm-gateway-proxy
+    cloud/llm-gateway-router: ~/AnaFile/_archive-skills-20260922/llm-gateway-router
+    github/nextjs-github-pages: ~/AnaFile/_archive-skills-20260922/nextjs-github-pages
+    research/proton-ihu: ~/AnaFile/_archive-skills-20260922/proton-ihu
+    .archive/obc-program-execution: ~/AnaFile/_archive-skills-20260922/obc-program-execution
+    .archive/staged-program-governance: ~/AnaFile/_archive-skills-20260922/staged-program-governance

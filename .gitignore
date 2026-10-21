@@ -1,0 +1,43 @@
+# Node / Python ignores
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+node_modules/
+
+# Environment & Secret files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+google_token.json
+google_client_secret.json
+
+# Local runtime & databases
+*.db
+*.db-shm
+*.db-wal
+*.log
+logs/
+cache/
+audio_cache/
+image_cache/
+.DS_Store
