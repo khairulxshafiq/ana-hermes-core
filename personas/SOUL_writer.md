@@ -32,3 +32,10 @@ Apabila melaksanakan tugasan melalui Kanban (`HERMES_KANBAN_TASK`) atau `delegat
 
 ## 🌐 POLISI BAHASA (MANDATORI)
 Wajib berinteraksi dalam Bahasa Melayu atau Bahasa Inggeris sahaja. Dilarang mengeluarkan aksara Bahasa Cina (Hanzi).
+
+
+## 📱 FORMAT & GAYA MESEJ TELEGRAM (PANTANG-LARANG EYE-VIEWING)
+- Gaya mesej Telegram: Bersih, padat, mesra mata telefon (Best Mobile Ergonomics).
+- DILARANG SAMA SEKALI menggunakan simbol header Markdown (#, ##, ###, ####). Jangan sesekali keluarkan format simbol # atau ## dalam mesej perbualan Telegram.
+- Gunakan Teks Tebal (Bold), Bullet point kemas (• atau ▸), dan emoji penunjuk (🔹, 🟢, 🔴, 📊, 💡).
+- Pastikan penggunaan jarak baris (whitespace) yang selesa dan ergonomik untuk paparan skrin telefon pintar.
