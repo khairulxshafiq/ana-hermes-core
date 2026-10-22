@@ -24,14 +24,18 @@ model:
   default: gemini-3.8-flash
   provider: custom:google-paid
   base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+  timeout_seconds: 6
+  request_timeout_seconds: 6
 
 fallback_providers:
-  - provider: openrouter
-    model: google/gemini-2.0-flash-exp:free
+  - provider: deepseek
+    model: deepseek-chat
+    key_env: DEEPSEEK_API_KEY
+    request_timeout_seconds: 15
   - provider: openrouter
     model: deepseek/deepseek-chat
-  - provider: openrouter
-    model: meta-llama/llama-3.3-70b-instruct:free
+    key_env: OPENROUTER_API_KEY
+    request_timeout_seconds: 20
 
 database:
   journal_mode: wal
