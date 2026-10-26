@@ -1,0 +1,13 @@
+[Unit]
+Description=Cloudflared quick tunnel -> Airtable webhook listener (8899)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/cloudflared tunnel --url http://${OPEND_HOST}:8899 --no-autoupdate
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,14 @@
+[Unit]
+Description=Airtable Webhook Listener (Sakluma gate instant trigger)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/home/ubuntu/.agent-tools/bin/python /home/ubuntu/scripts/airtable_webhook_listener.py
+Restart=always
+RestartSec=5
+Environment=WEBHOOK_SECRET=sakluma-gate-2026
+
+[Install]
+WantedBy=default.target

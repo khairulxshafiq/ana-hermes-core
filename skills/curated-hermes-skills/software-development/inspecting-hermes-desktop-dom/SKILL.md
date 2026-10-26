@@ -20,7 +20,7 @@ When you are developing `apps/desktop` and the user is running that same app
 they are looking at — computed styles, geometry, which CSS rule actually won,
 console output — instead of inferring it from `.tsx` and being wrong.
 
-Dev-server runs open a Chrome DevTools Protocol port on `127.0.0.1:9222`
+Dev-server runs open a Chrome DevTools Protocol port on `${OPEND_HOST}:9222`
 automatically. The renderer is a Chromium page, so everything DevTools can read,
 a script can read.
 
@@ -44,7 +44,7 @@ look right".
 
 ## The port
 
-Open on `127.0.0.1:9222` for any dev-server run. Closed in exactly two cases
+Open on `${OPEND_HOST}:9222` for any dev-server run. Closed in exactly two cases
 (`apps/desktop/electron/dev-cdp.ts`):
 
 - **packaged builds** — always, and no environment value overrides it;
@@ -56,7 +56,7 @@ Open on `127.0.0.1:9222` for any dev-server run. Closed in exactly two cases
 Check before doing anything else:
 
 ```bash
-curl -s --max-time 3 http://127.0.0.1:${HERMES_DESKTOP_CDP_PORT:-9222}/json/version
+curl -s --max-time 3 http://${OPEND_HOST}:${HERMES_DESKTOP_CDP_PORT:-9222}/json/version
 ```
 
 Empty → no port. Do not guess another port silently.
@@ -123,7 +123,7 @@ When there is no port, or you must not disturb the user's window:
 ```bash
 cd apps/desktop
 HERMES_HOME=/tmp/cdp-probe-home \
-HERMES_DESKTOP_DEV_SERVER=http://127.0.0.1:5174 \
+HERMES_DESKTOP_DEV_SERVER=http://${OPEND_HOST}:5174 \
 HERMES_DESKTOP_CDP_PORT=9333 \
   npx electron . --user-data-dir=/tmp/cdp-probe-userdata
 ```
@@ -144,7 +144,7 @@ also want the perf harness.
 - **A throwaway `HERMES_HOME` has no backend.** The app logs `ECONNREFUSED` for
   `hermes:api` and may exit on its own. The renderer still mounts and the DOM is
   readable — read promptly, and don't mistake a self-exited probe for a broken
-  port. Chromium logs `DevTools listening on ws://127.0.0.1:<port>/…` when it
+  port. Chromium logs `DevTools listening on ws://${OPEND_HOST}:<port>/…` when it
   binds; that line is the proof the port opened.
 - **Poll, don't probe once.** A just-launched app needs a second or two before
   the port answers.

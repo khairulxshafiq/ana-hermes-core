@@ -1,0 +1,374 @@
+# Sanitized snapshot of ~/.hermes/config.yaml (2026-10-26).
+# Secrets/IDs are ${VAR} placeholders - fill from .env.
+# NOTE: TELEGRAM_HOME_CHANNEL must be set (in .env and platforms.telegram.home_channel.chat_id)
+#   or cron/notification deliveries have no target. Hardening: tirith curl_pipe_shell/schemeless_to_sink
+#   are NOT allowlisted; approvals.destructive_slash_confirm=true.
+_config_version: 49
+agent:
+  max_turns: 30
+  memory:
+    memory_char_limit: 4000
+    memory_enabled: true
+    user_profile_enabled: true
+  reasoning_effort: medium
+  verbose: false
+approvals:
+  destructive_slash_confirm: true
+auxiliary:
+  title_generation:
+    enabled: true
+    model: deepseek-v4-flash
+    provider: deepseek
+  vision:
+    download_timeout: 30
+    model: deepseek-flash
+    provider: deepseek
+    timeout: 60
+browser:
+  cloud_provider: camofox
+  inactivity_timeout: 120
+  use_gateway: false
+cloud_provider:
+  inactivity_timeout: 300
+code_execution:
+  max_tool_calls: 50
+  timeout: 180
+command_allowlist:
+- copy/move file into system config path
+- execute_code
+- script execution via -e/-c flag
+- script execution via heredoc
+- stop/restart system service
+compression:
+  codex_app_server_auto: native
+  codex_gpt55_autoraise: true
+  codex_responses_compact_threshold: 200000
+  codex_responses_native: false
+  enabled: true
+  idle_compact_after_seconds: 0
+  max_attempts: 3
+  min_tail_user_messages: 1
+  proactive_prune_min_reclaim_tokens: 2048
+  proactive_prune_min_result_chars: 4000
+  proactive_prune_tokens: 12000
+  progress_notices: false
+  protect_first_n: 2
+  protect_last_n: 4
+  target_ratio: 0.2
+  threshold: 0.6
+  threshold_tokens_cap: 12000
+dashboard:
+  theme: mono
+database:
+  journal_mode: wal
+delegation:
+  max_iterations: 250
+display:
+  background_process_notifications: concise
+  bell_on_complete: false
+  busy_ack_detail: true
+  busy_input_mode: interrupt
+  cleanup_progress: false
+  compact: false
+  interim_assistant_messages: true
+  long_running_notifications: true
+  platforms:
+    telegram:
+      busy_ack_detail: false
+      tool_progress: false
+  show_cost: true
+  show_reasoning: false
+  skin: tanair
+  streaming: true
+  tool_progress: all
+fallback_providers:
+- model: openai/gpt-oss-120b
+  provider: groq
+  timeout_s: 30
+- model: ark-code-latest
+  provider: byteplus
+  timeout_s: 40
+gateway:
+  multiplex_profiles: true
+group_sessions_per_user: true
+image_gen:
+  provider: gemini
+kanban:
+  auto_decompose: false
+  dispatch_in_gateway: true
+  dispatch_interval_seconds: 20
+  review_dispatch: true
+known_builtin_toolsets:
+  cli:
+  - browser
+  - clarify
+  - code_execution
+  - computer_use
+  - connections
+  - context_engine
+  - cronjob
+  - delegation
+  - discord
+  - discord_admin
+  - file
+  - homeassistant
+  - image_gen
+  - memory
+  - session_search
+  - skills
+  - spotify
+  - stt
+  - terminal
+  - todo
+  - tts
+  - video
+  - video_gen
+  - vision
+  - web
+  - x_search
+  - yuanbao
+  telegram:
+  - browser
+  - clarify
+  - code_execution
+  - computer_use
+  - connections
+  - context_engine
+  - cronjob
+  - delegation
+  - discord
+  - discord_admin
+  - file
+  - homeassistant
+  - image_gen
+  - memory
+  - session_search
+  - skills
+  - spotify
+  - stt
+  - terminal
+  - todo
+  - tts
+  - video
+  - video_gen
+  - vision
+  - web
+  - x_search
+  - yuanbao
+known_plugin_toolsets:
+  cli:
+  - spotify
+  telegram:
+  - spotify
+mcp_servers:
+  comfy-cloud:
+    auth: ${COMFY_CLOUD_AUTH}
+    enabled: false
+    tools:
+      include:
+      - search_templates
+      - get_template
+      - get_template_schema
+      - search_models
+      - search_nodes
+      - get_node
+      - get_prompting_guide
+      - run_template
+      - submit_workflow
+      - partner_generate
+      - upload_file
+      - apply_slots
+      - get_job_status
+      - wait_for_job
+      - get_output
+      - use_previous_output
+      - cancel_job
+      - get_queue
+      - get_billing_status
+      - get_workflow_canvas_url
+    url: https://cloud.comfy.org/mcp
+memory:
+  flush_min_turns: 4
+  memory_char_limit: 6000
+  memory_enabled: true
+  nudge_interval: 10
+  user_char_limit: 3000
+  user_profile_enabled: true
+model:
+  aliases:
+    bulk:
+      model: deepseek-v4-flash
+      provider: deepseek
+    coding:
+      model: deepseek-v4-flash
+      provider: deepseek
+    copywrite:
+      model: deepseek-v4-flash
+      provider: deepseek
+    easy:
+      model: deepseek-v4-flash
+      provider: deepseek
+    reason:
+      model: deepseek-v4-flash
+      provider: deepseek
+    vision:
+      model: deepseek-flash
+      provider: deepseek
+    writer:
+      model: deepseek-v4-flash
+      provider: deepseek
+  base_url: https://api.deepseek.com/v1
+  default: deepseek-v4-flash
+  provider: deepseek
+  request_timeout_seconds: 120
+  timeout_seconds: 30
+onboarding:
+  seen:
+    busy_input_prompt: true
+    tool_progress_prompt: true
+platform_toolsets:
+  cli:
+  - delegation
+  - kanban
+  - file
+  - terminal
+  - code_execution
+  - skills
+  - memory
+  - session_search
+  - vision
+  - web
+  - clarify
+  - todo
+  - cronjob
+  - connections
+  - image_gen
+  - browser
+  discord:
+  - hermes-discord
+  google_chat:
+  - hermes-google_chat
+  homeassistant:
+  - hermes-homeassistant
+  qqbot:
+  - hermes-qqbot
+  signal:
+  - hermes-signal
+  slack:
+  - hermes-slack
+  teams:
+  - hermes-teams
+  telegram:
+  - delegation
+  - kanban
+  - file
+  - terminal
+  - code_execution
+  - skills
+  - memory
+  - session_search
+  - vision
+  - web
+  - clarify
+  - todo
+  - cronjob
+  - connections
+  - image_gen
+  whatsapp:
+  - hermes-whatsapp
+  yuanbao:
+  - hermes-yuanbao
+platforms:
+  telegram:
+    enabled: true
+    home_channel:
+      chat_id: ${TELEGRAM_HOME_CHANNEL}
+      name: Owner
+      platform: telegram
+      user_id: ${TELEGRAM_OWNER_USER_ID}
+plugins:
+  agentmemory:
+    args:
+    - /home/ubuntu/.npm/_npx/a3c27f3e65e46bc3/node_modules/@agentmemory/agentmemory/dist/standalone-BqNJDJ04.mjs
+    command: /home/ubuntu/.local/bin/node
+    enabled: true
+    env:
+      AGENTMEMORY_URL: ${AGENTMEMORY_URL}
+  disabled:
+  - image_gen/gemini
+  - obc35-mutation-guard
+  enabled:
+  - ana-router
+  entries:
+    image_gen/gemini:
+      allow_tool_override: true
+    obc35-mutation-guard:
+      allow_tool_override: true
+prompt_caching:
+  cache_ttl: 5m
+providers:
+  byteplus:
+    api_key: ${BYTEPLUS_API_KEY}
+    api_mode: chat_completions
+    base_url: ${BYTEPLUS_BASE_URL}
+    key_env: BYTEPLUS_API_KEY
+    model: ark-code-latest
+    models:
+    - ark-code-latest
+    - deepseek-v4-pro-ga-260813
+    - deepseek-v4-1-flash-260910
+    - seed-2-0-code-preview-260328
+    name: byteplus
+    rate_limit_delay: 1.5
+runtime:
+  nofile_soft_limit: 4096
+skills:
+  creation_nudge_interval: 15
+streaming:
+  enabled: false
+stt:
+  enabled: true
+  groq:
+    language: ''
+    model: whisper-large-v3-turbo
+  language: en
+  local:
+    model: base
+  openai:
+    language: ''
+    model: whisper-1
+  provider: groq
+telemetry:
+  shared_metrics:
+    enabled: false
+terminal:
+  backend: local
+  container_cpu: 1
+  container_disk: 51200
+  container_memory: 5120
+  container_persistent: true
+  cwd: .
+  docker_mount_cwd_to_workspace: false
+  home_mode: auto
+  lifetime_seconds: 300
+  timeout: 180
+tool_loop_guardrails:
+  hard_stop_after:
+    exact_failure: 3
+    idempotent_no_progress: 2
+    same_tool_failure: 3
+  hard_stop_enabled: true
+  warn_after:
+    exact_failure: 1
+    idempotent_no_progress: 2
+    same_tool_failure: 1
+  warnings_enabled: true
+tts:
+  use_gateway: false
+updates:
+  backup_keep: 5
+  non_interactive_local_changes: stash
+  pre_update_backup: false
+web:
+  backend: ddgs
+  use_gateway: false

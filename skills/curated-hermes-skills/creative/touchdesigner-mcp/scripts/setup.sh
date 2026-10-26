@@ -76,7 +76,7 @@ if 'twozero_td' not in cfg['mcp_servers']:
 fi
 
 # ── 4. Test if MCP port is responding ──
-if nc -z 127.0.0.1 "$MCP_PORT" 2>/dev/null; then
+if nc -z ${OPEND_HOST} "$MCP_PORT" 2>/dev/null; then
     echo -e " ${OK} Port ${MCP_PORT} is open"
 
     # ── 5. Verify MCP endpoint responds ──

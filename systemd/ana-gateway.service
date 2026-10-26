@@ -1,0 +1,26 @@
+[Unit]
+Description=ANA Hermes Agent Gateway - Unified Multi-Agent & Telegram Messaging
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/hermes gateway run --accept-hooks
+WorkingDirectory=%h/.hermes
+EnvironmentFile=%h/.hermes/.env
+Environment="HERMES_HOME=%h/.hermes"
+Environment="HERMES_SUPERVISED_CHILD=1"
+Environment="PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin"
+MemoryMax=450M
+MemoryHigh=400M
+Restart=always
+RestartSec=5
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

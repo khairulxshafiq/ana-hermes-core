@@ -139,7 +139,7 @@ def onTableChange(dat):
 
 ```python
 osc_out = root.create(oscoutCHOP, 'osc_out')
-osc_out.par.netaddress = '127.0.0.1'    # destination IP
+osc_out.par.netaddress = '${OPEND_HOST}'    # destination IP
 osc_out.par.port = 9000
 
 # Channel names become OSC addresses

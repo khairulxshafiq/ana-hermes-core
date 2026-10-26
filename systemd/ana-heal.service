@@ -1,0 +1,10 @@
+[Unit]
+Description=ANA Self-Heal L0 Watchdog
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/ubuntu/.local/bin/ana_heal
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Persistent SSH Tunnel for AgentMemory (agy -> localhost:3111)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ssh -N -L 3111:${OPEND_HOST}:3111 -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -o ServerAliveCountMax=3 agy
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

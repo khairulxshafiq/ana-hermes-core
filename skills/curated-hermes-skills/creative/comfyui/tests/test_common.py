@@ -39,14 +39,14 @@ class TestCloudDetection:
         assert is_cloud_host("https://api.cloud.comfy.org") is True
 
     def test_local_not_cloud(self):
-        assert is_cloud_host("http://127.0.0.1:8188") is False
+        assert is_cloud_host("http://${OPEND_HOST}:8188") is False
         assert is_cloud_host("http://localhost:8188") is False
         assert is_cloud_host("http://my-server.local:8188") is False
 
     def test_no_scheme(self):
         # Defaults to http://
         assert is_cloud_host("cloud.comfy.org") is True
-        assert is_cloud_host("127.0.0.1:8188") is False
+        assert is_cloud_host("${OPEND_HOST}:8188") is False
 
 
 class TestCloudEndpointRename:
@@ -69,7 +69,7 @@ class TestCloudEndpointRename:
 
 class TestResolveURL:
     def test_local_no_prefix(self):
-        assert resolve_url("http://127.0.0.1:8188", "/prompt") == "http://127.0.0.1:8188/prompt"
+        assert resolve_url("http://${OPEND_HOST}:8188", "/prompt") == "http://${OPEND_HOST}:8188/prompt"
 
     def test_cloud_adds_api_prefix(self):
         assert resolve_url("https://cloud.comfy.org", "/prompt") == "https://cloud.comfy.org/api/prompt"
@@ -85,7 +85,7 @@ class TestResolveURL:
         assert resolve_url("https://cloud.comfy.org", "/api/prompt") == "https://cloud.comfy.org/api/prompt"
 
     def test_trailing_slash_stripped(self):
-        assert resolve_url("http://127.0.0.1:8188/", "/prompt") == "http://127.0.0.1:8188/prompt"
+        assert resolve_url("http://${OPEND_HOST}:8188/", "/prompt") == "http://${OPEND_HOST}:8188/prompt"
 
 
 # =============================================================================

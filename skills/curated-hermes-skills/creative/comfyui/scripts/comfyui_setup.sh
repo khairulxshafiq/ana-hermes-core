@@ -232,10 +232,10 @@ if [ "$SKIP_LAUNCH" -eq 1 ]; then
 fi
 
 # --- Step 4: Detect already-running server ---
-if curl -fsS "http://127.0.0.1:$PORT/system_stats" >/dev/null 2>&1; then
+if curl -fsS "http://${OPEND_HOST}:$PORT/system_stats" >/dev/null 2>&1; then
     log "Server already running on port $PORT — skipping launch."
     log "Stop with \`$COMFY_BIN stop\` if you want a fresh start."
-    curl -fsS "http://127.0.0.1:$PORT/system_stats" | python3 -m json.tool 2>/dev/null || true
+    curl -fsS "http://${OPEND_HOST}:$PORT/system_stats" | python3 -m json.tool 2>/dev/null || true
     log "Done."
     exit 0
 fi
@@ -255,9 +255,9 @@ log "Waiting for server…"
 MAX_WAIT=60
 ELAPSED=0
 while [ $ELAPSED -lt $MAX_WAIT ]; do
-    if curl -fsS "http://127.0.0.1:$PORT/system_stats" >/dev/null 2>&1; then
+    if curl -fsS "http://${OPEND_HOST}:$PORT/system_stats" >/dev/null 2>&1; then
         log "Server is running!"
-        curl -fsS "http://127.0.0.1:$PORT/system_stats" | python3 -m json.tool 2>/dev/null || true
+        curl -fsS "http://${OPEND_HOST}:$PORT/system_stats" | python3 -m json.tool 2>/dev/null || true
         break
     fi
     sleep 2
@@ -273,8 +273,8 @@ fi
 
 log ""
 log "Setup complete!"
-log "  Server: http://127.0.0.1:$PORT"
-log "  Web UI: http://127.0.0.1:$PORT (open in browser)"
+log "  Server: http://${OPEND_HOST}:$PORT"
+log "  Web UI: http://${OPEND_HOST}:$PORT (open in browser)"
 log "  Stop:   $COMFY_BIN stop"
 log "  Log:    $LOG_FILE (kept until shell closes)"
 log ""

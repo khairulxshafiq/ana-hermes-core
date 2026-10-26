@@ -177,7 +177,7 @@ class TestRunnerConstruction:
     def test_local_default(self):
         r = ComfyRunner()
         assert r.is_cloud is False
-        assert r.host == "http://127.0.0.1:8188"
+        assert r.host == "http://${OPEND_HOST}:8188"
 
     def test_cloud_detection(self):
         r = ComfyRunner(host="https://cloud.comfy.org", api_key="abc")
@@ -197,7 +197,7 @@ class TestRunnerConstruction:
     def test_url_routing_local(self):
         r = ComfyRunner()
         url = r._url("/prompt")
-        assert url == "http://127.0.0.1:8188/prompt"
+        assert url == "http://${OPEND_HOST}:8188/prompt"
 
     def test_url_routing_cloud(self):
         r = ComfyRunner(host="https://cloud.comfy.org", api_key="x")

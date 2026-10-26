@@ -16,7 +16,7 @@ Improvements over v1:
 
 Usage:
     python3 check_deps.py workflow_api.json
-    python3 check_deps.py workflow_api.json --host 127.0.0.1 --port 8188
+    python3 check_deps.py workflow_api.json --host ${OPEND_HOST} --port 8188
     python3 check_deps.py workflow_api.json --host https://cloud.comfy.org
 
 Stdlib-only. Python 3.10+.

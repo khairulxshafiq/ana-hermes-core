@@ -29,7 +29,7 @@ Bila ANA decide nak delegate, guna jadual ni:
 | Task Class | Delegate To | Capabilities / Scope | Boundaries / Had | Verify Method |
 |------------|------------|----------------------|------------------|---------------|
 | Coding, quick fixes, local integration | **Coder** (VPS) | Python/JS scripting, git commit, local integration (<30 min) | Local VPS sahaja. Heavy compute delegasi ke Luma | git log, wc -c, syntax/unit test |
-| Compute berat, video render 60fps | **Luma** (GCP 34.87.3.27) | Cloud Twin, Remotion/FFmpeg render, voice cloning (boss_voice_sample.wav), TanAir-Cloud repo git | Saluran pelaksana luaran. Hasil disimpan di GCP & Telegram | auto_sync_video.py output, video file check |
+| Compute berat, video render 60fps | **Luma** (GCP <REDACTED_IP>) | Cloud Twin, Remotion/FFmpeg render, voice cloning (boss_voice_sample.wav), TanAir-Cloud repo git | Saluran pelaksana luaran. Hasil disimpan di GCP & Telegram | auto_sync_video.py output, video file check |
 | Web research, fakta, data luar | **Researcher** | OpenRouter deepseek-v4.1-flash, search & synthesis | Draf teks, tidak ubah sistem atau publish | Spot-check citations & source URLs |
 | Copywriting, posting, naratif | **Writer** | BytePlus deepseek-v4-flash, draf posting FB/Threads/Blog | Draf sahaja, tiada direct posting awam | Tone check, brand guidelines TanAir |
 | Arkib, diagram seni bina, laporan | **Dokumentalis** | Mermaid diagrams, penyusunan status ~/AnaFile/ | Draf dokumentasi, dilarang edit config teras | File structure & markdown formatting |
@@ -89,7 +89,7 @@ See `references/handoff-protocol.md` for handoff file naming conventions and for
 | ✍️ Writer | `deepseek-v4-flash-ga-260731` | BytePlus | 💰 Jimat — flash cukup untuk content, included in sub |
 | 📋 Dokumentalis | `deepseek-v4-flash-ga-260731` | BytePlus | 💰 Jimat — system docs, included in sub |
 | ⚖️ Reviewer | `deepseek-v4-flash-ga-260731` | BytePlus | 💰 Jimat — QA gate, flash default, `reason` alias pro bila perlu |
-| ⚡ Luma | Cloud Twin (GCP SG 34.87.3.27, host alias `agy`) | GCP / Gemini | VM Compute — 60fps Motion Video & Git Repo Worker (GCP cost). SSH: `ssh agy` (user khairulshafiq, key ~/.ssh/id_agy). Model: `Gemini 3.8 Flash (High)` via `agy --model "Gemini 3.8 Flash (High)" --dangerously-skip-permissions --print="..."` |
+| ⚡ Luma | Cloud Twin (GCP SG <REDACTED_IP>, host alias `agy`) | GCP / Gemini | VM Compute — 60fps Motion Video & Git Repo Worker (GCP cost). SSH: `ssh agy` (user khairulshafiq, key ~/.ssh/id_agy). Model: `Gemini 3.8 Flash (High)` via `agy --model "Gemini 3.8 Flash (High)" --dangerously-skip-permissions --print="..."` |
 
 **Rules:**
 - Researcher runs on **OpenRouter deepseek-v4.1-flash ($0.075/M)** — bukan BytePlus. Sebab: research intermittent (on-demand bila boss minta), tak perlu sub. Free fallback chain sedia ada.
@@ -168,14 +168,14 @@ Boss: hantar gambar / request visual
 ## Luma Offline Fallback (from 30Sep2026 rebrand task)
 
 ### Critical: Luma SSH connectivity
-Luma (GCP 34.87.3.27) uses **host alias `agy`** in SSH config — NOT raw IP. The SSH config at `~/.ssh/config` defines:
+Luma (GCP <REDACTED_IP>) uses **host alias `agy`** in SSH config — NOT raw IP. The SSH config at `~/.ssh/config` defines:
 ```
 Host agy
-    HostName 34.87.3.27
+    HostName <REDACTED_IP>
     User khairulshafiq
     IdentityFile ~/.ssh/id_agy
 ```
-- **Always test with `ssh agy "echo SSH_OK"`**, not `ssh ubuntu@34.87.3.27` (that user/key combo fails).
+- **Always test with `ssh agy "echo SSH_OK"`**, not `ssh ubuntu@<REDACTED_IP>` (that user/key combo fails).
 - The `agy_delegate.sh` script uses `scp agy:~/luma_task_current.md` and `ssh agy` — it works because it uses the alias.
 - If you test manually with raw IP + wrong user/key, you'll get `Permission denied (publickey)` — this is NOT the VM being down, it's the wrong SSH target.
 

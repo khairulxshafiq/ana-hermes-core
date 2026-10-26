@@ -18,7 +18,7 @@ Check these in order:
    ```
    curl -s http://localhost:40404/mcp
    ```
-   Returns: `{"hub": true, "pid": ..., "instances": {"127.0.0.1_PID": {"project": "...", "tdVersion": "...", ...}}}`
+   Returns: `{"hub": true, "pid": ..., "instances": {"${OPEND_HOST}_PID": {"project": "...", "tdVersion": "...", ...}}}`
    If this returns JSON but `instances` is empty, TD is running but twozero hasn't registered yet.
 
 2. Is twozero installed in TD?
@@ -29,7 +29,7 @@ Check these in order:
 
 4. Test the port directly:
    ```bash
-   nc -z 127.0.0.1 40404
+   nc -z ${OPEND_HOST} 40404
    ```
 
 5. Test the MCP endpoint:

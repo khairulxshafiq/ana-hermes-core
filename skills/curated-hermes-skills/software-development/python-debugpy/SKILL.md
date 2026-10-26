@@ -159,7 +159,7 @@ Add near the top of the entry point (or inside the function you want to debug):
 
 ```python
 import debugpy
-debugpy.listen(("127.0.0.1", 5678))
+debugpy.listen(("${OPEND_HOST}", 5678))
 print("debugpy listening on 5678, waiting for client...", flush=True)
 debugpy.wait_for_client()
 debugpy.breakpoint()       # optional: pause immediately once attached
@@ -170,13 +170,13 @@ Start the process; it blocks on `wait_for_client()`.
 ### Pattern B: No source edit — launch with `-m debugpy`
 
 ```bash
-python -m debugpy --listen 127.0.0.1:5678 --wait-for-client your_script.py arg1
+python -m debugpy --listen ${OPEND_HOST}:5678 --wait-for-client your_script.py arg1
 ```
 
 Equivalent for module entry:
 
 ```bash
-python -m debugpy --listen 127.0.0.1:5678 --wait-for-client -m your.module
+python -m debugpy --listen ${OPEND_HOST}:5678 --wait-for-client -m your.module
 ```
 
 ### Pattern C: Attach to an already-running process
@@ -184,7 +184,7 @@ python -m debugpy --listen 127.0.0.1:5678 --wait-for-client -m your.module
 Needs the PID and debugpy preinstalled in the target's environment:
 
 ```bash
-python -m debugpy --listen 127.0.0.1:5678 --pid <pid>
+python -m debugpy --listen ${OPEND_HOST}:5678 --pid <pid>
 # debugpy injects itself into the process. Then attach a client as below.
 ```
 
@@ -203,7 +203,7 @@ The easiest terminal-side DAP client is VS Code CLI or a small script. From insi
 # /tmp/dap_client.py
 import socket, json, itertools, time, sys
 
-HOST, PORT = "127.0.0.1", 5678
+HOST, PORT = "${OPEND_HOST}", 5678
 s = socket.create_connection((HOST, PORT))
 seq = itertools.count(1)
 
@@ -243,7 +243,7 @@ This is fine for one-off automation but painful as an interactive UX.
   "name": "Attach to Hermes",
   "type": "debugpy",
   "request": "attach",
-  "connect": { "host": "127.0.0.1", "port": 5678 },
+  "connect": { "host": "${OPEND_HOST}", "port": 5678 },
   "justMyCode": false,
   "pathMappings": [
     { "localRoot": "${workspaceFolder}", "remoteRoot": "<hermes-agent-repo>" }
@@ -260,12 +260,12 @@ pip install remote-pdb
 In your code:
 ```python
 from remote_pdb import set_trace
-set_trace(host="127.0.0.1", port=4444)   # blocks until connection
+set_trace(host="${OPEND_HOST}", port=4444)   # blocks until connection
 ```
 
 Then from the terminal:
 ```bash
-nc 127.0.0.1 4444
+nc ${OPEND_HOST} 4444
 # You get a (Pdb) prompt exactly as if debugging locally.
 ```
 
@@ -286,7 +286,7 @@ The gateway runs as a child of the Node TUI. Options:
 ```python
 # tui_gateway/server.py near the top of serve()
 import debugpy
-debugpy.listen(("127.0.0.1", 5678))
+debugpy.listen(("${OPEND_HOST}", 5678))
 debugpy.wait_for_client()
 ```
 Start `hermes --tui`. The TUI will appear frozen (its backend is waiting). Attach a client; execution resumes when you `continue`.
@@ -294,9 +294,9 @@ Start `hermes --tui`. The TUI will appear frozen (its backend is waiting). Attac
 **B. Use `remote-pdb` at a specific handler:**
 ```python
 from remote_pdb import set_trace
-set_trace(host="127.0.0.1", port=4444)   # in the RPC handler you want to trap
+set_trace(host="${OPEND_HOST}", port=4444)   # in the RPC handler you want to trap
 ```
-Trigger the matching slash command from the TUI, then `nc 127.0.0.1 4444` in another terminal.
+Trigger the matching slash command from the TUI, then `nc ${OPEND_HOST} 4444` in another terminal.
 
 ### `_SlashWorker` subprocess
 Same pattern — `remote-pdb` with `set_trace()` inside the worker's `exec` path. The worker is persistent across slash commands, so the first trigger blocks until you connect; subsequent slash commands pass through normally unless you re-arm.
@@ -362,9 +362,9 @@ python -m pytest tests/ -x --pdb
 **"My async handler deadlocks."**
 ```python
 # Add at handler entry
-import remote_pdb; remote_pdb.set_trace(host="127.0.0.1", port=4444)
+import remote_pdb; remote_pdb.set_trace(host="${OPEND_HOST}", port=4444)
 ```
-Trigger the handler. `nc 127.0.0.1 4444`, then `w` to see the suspended frame, `!import asyncio; asyncio.all_tasks()` to see what else is pending.
+Trigger the handler. `nc ${OPEND_HOST} 4444`, then `w` to see the suspended frame, `!import asyncio; asyncio.all_tasks()` to see what else is pending.
 
 **"Post-mortem on a crash in an Ink child process / subprocess."**
 ```bash

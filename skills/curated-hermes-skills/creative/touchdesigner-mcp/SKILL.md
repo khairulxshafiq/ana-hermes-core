@@ -55,7 +55,7 @@ The script will:
 
 After setup, verify:
 ```bash
-nc -z 127.0.0.1 40404 && echo "twozero MCP: READY"
+nc -z ${OPEND_HOST} 40404 && echo "twozero MCP: READY"
 ```
 
 ## Environment Notes

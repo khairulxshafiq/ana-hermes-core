@@ -41,3 +41,24 @@ cache/
 audio_cache/
 image_cache/
 .DS_Store
+
+# Hardened secret ignores (2026-10-26)
+auth.json
+auth.lock
+*token*.json
+*_token*
+*.token
+credentials*.json
+client_secret*.json
+id_rsa*
+id_ed25519*
+*.p12
+*.pfx
+*.sqlite
+*.sqlite3
+sessions/
+sandboxes/
+memories/
+state/
+.usage.json*
+.curator_state
