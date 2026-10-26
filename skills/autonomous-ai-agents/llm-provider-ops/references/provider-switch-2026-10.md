@@ -19,7 +19,7 @@ deepseek, groq, openrouter. primary as deepseek. tukar now"
 
 ## Yang dikerjakan
 
-1. Backup `config.yaml`, `.env`, `profiles/ana-trade/config.yaml` dengan suffix timestamp.
+1. Backup `config.yaml`, `.env` dengan suffix timestamp.
 2. Probe `/models` ketiga-tiga provider → sahkan ID sebenar.
 3. Semua tulisan config melalui `hermes config set` / `hermes config unset`.
 4. `providers.google-paid` DAN `custom_providers` di-unset bersama (anchor YAML).
@@ -46,7 +46,6 @@ deepseek, groq, openrouter. primary as deepseek. tukar now"
    Alternatif belum dipasang: Replicate FLUX (`~/scripts/ana_lora_gen.py`), ComfyUI, BytePlus.
 3. `~/scripts/ana_nanobanana.py` + `aura_nanobanana.py` baca `GEMINI_API_KEY_PAID` secara
    hardcode (`TIERS` → `gemini-3.1-flash-image` / `gemini-pro-image`) — mati kalau kunci dibuang.
-4. Profile `ana-trade` masih `${DEFAULT_MODEL}` (aux dia guna `custom:byteplus`, bukan gemini).
 5. Gateway belum reload → sesi semasa masih pada model lama.
 
 ## Ikutan untuk sesi seterusnya

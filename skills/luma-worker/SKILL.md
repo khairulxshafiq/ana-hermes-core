@@ -8,7 +8,7 @@ description: Dispatch intensive research, viral news scraping, document parsing,
 GCP Node `luma-us` (`<REDACTED_IP>:8000`) acts as ANA's dedicated heavy background worker over Tailscale WireGuard mesh.
 
 ## The 4 Core Supporting Engines:
-1. **Engine A: Watchdog Alerter** – Pings Tencent Bridge & Moomoo OpenD every 5 mins. Dispatches Telegram alerts to Boss (${TELEGRAM_HOME_CHAT_ID}) on failure.
+1. **Engine A: Watchdog Alerter** – Pings Tencent Bridge every 5 mins. Dispatches Telegram alerts to Boss (${TELEGRAM_HOME_CHAT_ID}) on failure.
 2. **Engine B: G-Vault Backup** – Daily automated SQLite backup (04:00 AM MYT) to Google Drive with 7-day retention.
 3. **Engine C: Viral News Scraper** – Real-time scraping of Bursa Malaysia, Bernama, and Google News Malaysia with pandas scoring.
 4. **Engine D: Heavy Doc Parser** – Extracts and synthesizes PDF/Excel documents via `pypdf` / `openpyxl` to spare Tencent RAM.

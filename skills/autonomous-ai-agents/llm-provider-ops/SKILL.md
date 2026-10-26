@@ -25,7 +25,7 @@ hermes profile list                                    # model SETIAP profile (l
 ```
 
 `hermes profile list` penting: session utama boleh jadi deepseek sementara profile
-`ana-trade`/`writer` masih pada provider berbayar. Jangan kata "dah tukar semua"
+`writer` masih pada provider berbayar. Jangan kata "dah tukar semua"
 sebelum tengok senarai ni.
 
 Backup dulu:
@@ -131,7 +131,7 @@ Semak: `hermes config get providers`, `hermes config get model`, `hermes config 
 ### 2b. Profile pekerja: CLI `config set` TIDAK cukup
 
 `hermes config set` menulis config utama / profil aktif sahaja. Bila perlu migrasi 5-7 profile
-serentak (`ana-trade`, `writer`, `reviewer`, `researcher`, `coder`, `dokumentalis`):
+serentak (`writer`, `reviewer`, `researcher`, `coder`, `dokumentalis`):
 
 1. Backup setiap satu: `cp profiles/<nama>/config.yaml profiles/<nama>/config.yaml.bak.<ts>`.
 2. Fail config Hermes **tiada komen** (`grep -c '^\s*#'` = 0) → YAML round-trip selamat.
@@ -300,13 +300,13 @@ Ikut urutan ni setiap kali rename:
 
 ### 6d. Edit daemon jauh secara bedah (buang satu watcher/check)
 
-Bila Boss suruh buang satu bahagian daemon (contoh check `moomoo_ok` yang sentiasa false sebab
-OpenD bind `${OPEND_HOST}` dan tak boleh dicapai dari GCP):
+Bila Boss suruh buang satu bahagian daemon (contoh check `broker_ok` yang sentiasa false sebab
+broker gateway bind `<host>` dan tak boleh dicapai dari GCP):
 
 1. `grep -n "<symbol>" pkg/*.py` → kira semua tapak (state dict, assignment, `is_down` condition,
    log line, alert `reasons.append`, payload JSON).
 2. Tulis skrip patch **berasaskan baris** (bukan regex besar) yang: backup `.bak.<tag>`, buang baris
-   tepat, ganti syarat (`is_down = not bridge_ok or not moomoo_ok` → `is_down = not bridge_ok`),
+   tepat, ganti syarat (`is_down = not bridge_ok or not broker_ok` → `is_down = not bridge_ok`),
    kemudian assert `"<symbol>" not in new_text` sebelum tulis.
 3. `py_compile` guna venv servis → restart → `curl /health` → **sahkan payload JSON tak lagi ada
    key itu** (`watchdog: {'bridge_ok': True, 'failures': 0}`) → uji satu endpoint ber-LLM untuk
@@ -394,4 +394,4 @@ sekali, supaya tiada alert palsu berulang.
   dan output ujian sebenar (research endpoint 200 + synthesis 3261 aksara).
 * `references/remote-daemon-rename-and-watchdog-2026-10-25.md` — rename lane var ke `LLM_*`,
   bug `NameError` yang lulus `py_compile`, gate param `thinking` ikut host, prosedur bedah
-  buang watcher `moomoo_ok` (7 baris), dan quirk `gpt-oss-120b` pulang ayat enggan.
+  buang watcher `broker_ok` (7 baris), dan quirk `gpt-oss-120b` pulang ayat enggan.

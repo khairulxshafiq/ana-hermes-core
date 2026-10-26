@@ -71,7 +71,6 @@ workers:
     escalate: copywrite
     skills:
     - finance/akira-finance
-    - finance/aura-trading
   aura-image:
     topic: IMG
     alias: vision

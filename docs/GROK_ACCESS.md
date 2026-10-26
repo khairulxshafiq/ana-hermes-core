@@ -35,7 +35,6 @@ Dokumen ni untuk agent yang pegang admin selepas ANA. Baca dulu sebelum buat apa
 2. Selepas edit Python: python3 -m py_compile <fail>.
 3. JANGAN sentuh GEMINI_API_KEY / GEMINI_API_KEY_PAID - itu satu-satunya lane image generation.
 4. JANGAN print nilai rahsia ke log/Telegram.
-5. Live trading / posting social awam: kena pengesahan Boss dulu.
 6. Gateway reload: systemctl --user reload hermes-gateway (bukan restart) supaya sesi tak putus.
 
 ## 6. MASALAH YANG MASIH TERBUKA (25 Okt 2026)
@@ -44,7 +43,6 @@ Dokumen ni untuk agent yang pegang admin selepas ANA. Baca dulu sebelum buat apa
 - OpenRouter key mati (401 User not found). BytePlus quota habis sampai 29 Okt 2026.
 - hermes-webui inactive (bukan kritikal)
 - Whisper: guna Groq whisper-large-v3-turbo (percuma). JANGAN bina whisper.cpp di VPS 2GB.
-- Moomoo OpenD bind ${OPEND_HOST}:11111 sahaja (bukan isu; watcher Luma dah dibuang)
 
 - 26 Okt 2026: Hardening Hermes siap (allowlist ketat, destructive_slash_confirm=true, token na_*.sh pindah ke .env, state.db 600). Lihat ~/HARDENING_LOG.md
 

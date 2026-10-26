@@ -1,6 +1,6 @@
 # Audit liveness provider + migrasi Groq free (25 Okt 2026)
 
-Kes sebenar: Boss arah "delete je Google API, image gen Gemini tinggal, worker/ana-trade guna Groq free
+Kes sebenar: Boss arah "delete je Google API, image gen Gemini tinggal, worker guna Groq free
 kalau boleh, otherwise DeepSeek". Ringkasan apa yang diuji, apa yang mati, dan urutan kerja yang dipakai.
 
 ## 1. Fingerprint kunci dulu (elak padam kunci yang sebenarnya sama)
@@ -49,7 +49,6 @@ Nota tingkah laku Groq `gpt-oss`:
 | Profile | Primary | Fallback |
 |---|---|---|
 | `default` | deepseek-v4-flash | groq/gpt-oss-120b, byteplus/ark-code-latest |
-| `ana-trade` | **groq/openai/gpt-oss-120b** | deepseek-v4-flash, byteplus/ark-code-latest |
 | `writer`/`reviewer`/`researcher`/`coder`/`dokumentalis` | deepseek-v4-flash | groq/gpt-oss-120b, byteplus/ark-code-latest |
 
 Semua: `auxiliary.vision` = deepseek/`deepseek-flash`, `auxiliary.title_generation` = deepseek-v4-flash,

@@ -43,7 +43,7 @@ Software engineering · debugging · automation · scripting · DevOps · infras
 
 ## Boundary (WAJIB)
 - JANGAN jalankan gateway Telegram (`platforms.telegram.enabled=false`) — CLI/kanban worker sahaja.
-- JANGAN sentuh content creation/arahan pemasaran/kewangan/trading/imej (Ana-Writer/Ana-Art/Ana-Trade domain).
+- JANGAN sentuh content creation/arahan pemasaran/kewangan/imej (Ana-Writer/Ana-Art domain).
 - Consequential (deploy prod, paid, delete data, push) → minta approve melalui ANA; dry-run dahulu.
 - Bila task dari kanban: claim → buat → comment → complete.
 
@@ -95,14 +95,12 @@ Shared DB → PostgreSQL (akan datang)
 |---------|--------|-----------------|
 | **MyGent** 🧠 | Custom Agent Studio — users train bot sendiri | Aura Core |
 | **Gerak** 🎬 | Motion Studio — automated video | Aura-Vision |
-| **AnaTrade** 📊 | Market Radar — Bursa, crypto | Ana-Trade |
 | **Trending** 🔍 | Social Trend Radar | Aura-Scout |
 | **Content Assist** ✍️ | Content & Campaign Writer | Aura-Pen |
 | **Yabang** 🏗️ | Enterprise Visual Generator | Ana-Art |
 
 ### Rebranding Yang Dah Siap
 - TanAir → TanAir / Ana.Latefa
-- Ana-Trade → AnaTrade
 - hermes-agent-self-evolution → Vulcan
 - antigravity-workspace → Luma
 - tanair-notes → deleted (content in AnaFile)
@@ -110,7 +108,7 @@ Shared DB → PostgreSQL (akan datang)
 - TanAir repo → deleted (legacy monorepo)
 
 ### Fasa Pelaksanaan TanAir-Cloud (dari Master Brief)
-1. **F1 🔴** — Rebrand UI: Aura → MyGent/Gerak/AnaTrade/Trending/Content Assist/Yabang
+1. **F1 🔴** — Rebrand UI: Aura → MyGent/Gerak/Trending/Content Assist/Yabang
 2. **F2 🟡** — Copy + SEO overhaul (English professional + value-first)
 3. **F3 🟢** — Profile workers setup & API gateway
 4. **F4 🔵** — Particle physics upgrade (AntigravityCanvas)

@@ -66,24 +66,24 @@ if attempt == 0 and _is_deepseek_lane:
     payload["thinking"] = {"type": "disabled"}
 ```
 
-## 3. Buang watcher `moomoo_ok` (arahan Boss: "padam je")
+## 3. Buang watcher `broker_ok` (arahan Boss: "padam je")
 
-Kontek: OpenD bind `${OPEND_HOST}:11111` di VPS Tencent. Dari Luma:
+Kontek: broker gateway bind `<host>:11111` di VPS Tencent. Dari Luma:
 ```
 bridge 8000  -> 200
-opend 11111  -> CLOSED
+broker 11111  -> CLOSED
 ```
-Jadi `moomoo_ok: false` adalah **false alarm**, bukan broker mati.
+Jadi `broker_ok: false` adalah **false alarm**, bukan broker mati.
 
-Tapak yang perlu dibuang (7 baris): entry dalam `watchdog_state`, `moomoo_ok = await
-check_tcp_port(...)`, `watchdog_state["moomoo_ok"] = ...`, syarat `is_down`, `moomoo={...}`
-dalam warning, blok `reasons.append("• Moomoo OpenD Port ...")`, dan key payload `/health`.
+Tapak yang perlu dibuang (7 baris): entry dalam `watchdog_state`, `broker_ok = await
+check_tcp_port(...)`, `watchdog_state["broker_ok"] = ...`, syarat `is_down`, `broker={...}`
+dalam warning, blok `reasons.append("• broker gateway Port ...")`, dan key payload `/health`.
 
 Skrip bedah (ringkas):
 ```python
 lines = P.read_text().split("\n")
-# loop baris: buang baris tepat; ganti syarat is_down; buang blok if not moomoo_ok + append
-assert "moomoo_ok" not in new_text   # baru tulis
+# loop baris: buang baris tepat; ganti syarat is_down; buang blok if not broker_ok + append
+assert "broker_ok" not in new_text   # baru tulis
 subprocess.run([venv_py, "-m", "py_compile", str(P)])
 ```
 

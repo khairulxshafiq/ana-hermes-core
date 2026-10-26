@@ -23,7 +23,7 @@ import sys
 PICK_DEFAULT = [
     "llm-provider-ops", "google-oauth-tokens", "rclone-remote-ops", "cloud-backup-auth",
     "content-flow", "shortform-video", "luma-worker", "model-router", "media-use",
-    "telegram-native-ui", "hyperliquid", "bursa-malaysia",
+    "telegram-native-ui",
 ]
 
 LOSSES = """Grok/chatbot platform tiada: shell, VPS, cron, SSH, filesystem kekal,
